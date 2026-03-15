@@ -1,0 +1,129 @@
+/* styles/about.css */
+/* Five Dollar Down — About page specific styles */
+
+/* ─── Page header ────────────────────────────────────── */
+.about-hero {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.about-hero h1 {
+  color: var(--c-white);
+  margin-bottom: var(--space-xs);
+}
+
+.about-hero-sub {
+  color: var(--c-muted);
+  font-size: 1.0625rem;
+}
+
+/* ─── Our Story ──────────────────────────────────────── */
+.about-story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.about-story h2 {
+  margin-bottom: var(--space-sm);
+  color: var(--c-white);
+}
+
+.about-story p + p {
+  margin-top: var(--space-sm);
+}
+
+.about-story p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-story-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .about-story {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+}
+
+/* ─── Meet the Band ──────────────────────────────────── */
+.members-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .members-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.member-card {
+  background: var(--c-ink-2);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--t-base), transform var(--t-base);
+}
+
+.member-card:hover {
+  border-color: var(--c-accent);
+  transform: translateY(-4px);
+}
+
+.member-photo-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--c-black);
+}
+
+.member-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+}
+
+.member-card:hover .member-photo-wrap img {
+  transform: scale(1.04);
+}
+
+.member-info {
+  padding: var(--space-sm);
+}
+
+.member-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.01em;
+  color: var(--c-white);
+  margin-bottom: 0.2rem;
+}
+
+.member-role {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.member-bio {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+}

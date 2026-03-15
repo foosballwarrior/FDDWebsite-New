@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Five Dollar Down — Ottawa's premier party band. Available for weddings, corporate events, private parties and clubs.">
+  <title>Five Dollar Down | Ottawa's Premier Party Band</title>
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/gallery.css">
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="#hero" class="nav-logo" aria-label="Five Dollar Down — home">
+        <img src="assets/images/logo.svg" alt="Five Dollar Down" height="36">
+        <span class="nav-logo-text">Five Dollar Down</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#shows">Shows</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#songs">Songs</a></li>
+        <li><a href="#book-us" class="btn-primary">Book Us</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay menu -->
+  <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="nav-overlay-close" aria-label="Close menu">&#x2715;</button>
+    <a href="#about">About</a>
+    <a href="#shows">Shows</a>
+    <a href="#media">Media</a>
+    <a href="#songs">Songs</a>
+    <a href="#book-us">Book Us</a>
+  </div>
+
+  <main>
+
+    <!-- ─── Section 1: Hero ─────────────────────────── -->
+    <section id="hero" class="hero" aria-label="Hero">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="assets/video/hero-poster.jpg"
+        aria-hidden="true"
+        id="hero-video"
+      >
+        <!--
+          Desktop source (1920×1080, landscape) — uncomment when ready:
+          <source src="assets/video/hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
+        -->
+        <!-- Mobile source (vertical) — used for all sizes until desktop is ready -->
+        <source src="assets/video/hero-mobile.webm" type="video/webm">
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1>Five Dollar Down</h1>
+        <p class="hero-subheading">Rock &bull; Pop &bull; Country &bull; Everything in Between</p>
+        <a href="#book-us" class="btn-primary">Book Us</a>
+      </div>
+    </section>
+
+    <!-- ─── Section 2: About ────────────────────────── -->
+    <section id="about" class="bg-surface section-pad">
+      <div class="container">
+        <div class="two-col">
+
+          <div class="about-text">
+            <h2>About the Band</h2>
+            <p>Ready to dance all night? We're the high-energy party band that turns every event into an unforgettable celebration. With 8+ years of experience crafting perfect setlists, we deliver the hits you know and love—guaranteed to pack the dance floor at your wedding, corporate event, restaurant or backyard party.</p>
+            <p><!-- TODO: add band history paragraph (e.g. how the band formed, notable venues, what makes FDD unique) --></p>
+            <a href="about.html" class="btn-ghost" style="margin-top: var(--space-sm);">Meet the Band &rarr;</a>
+          </div>
+
+          <div class="about-photo-single">
+            <figure>
+              <img
+                src="assets/images/band-1.webp"
+                alt="Five Dollar Down performing live on stage"
+                loading="lazy"
+                width="700"
+                height="467"
+              >
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Section 3: Shows ────────────────────────── -->
+    <section id="shows" class="bg-ink section-pad">
+      <div class="container">
+        <h2 class="section-heading section-heading--gold">Upcoming Shows</h2>
+        <!-- JS renders show cards here -->
+        <div id="shows-container"></div>
+        <div class="shows-footer">
+          <a href="past-shows.html">View Past Shows &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Section 4: Media ────────────────────────── -->
+    <section id="media" class="section-pad">
+
+      <!-- Videos -->
+      <div class="bg-surface" style="padding-block: var(--space-lg);">
+        <div class="container">
+          <h2 class="section-heading">Watch Us Play</h2>
+          <!-- Landscape videos — 2-col grid -->
+          <div class="videos-grid">
+            <div class="yt-embed" data-id="SExP0dixs6o" data-orientation="landscape"></div>
+            <div class="yt-embed" data-id="JApimicAJ3Y" data-orientation="landscape"></div>
+            <!-- Add landscape videos here -->
+            <!-- <div class="yt-embed" data-id="YOUTUBE_VIDEO_ID" data-orientation="landscape"></div> -->
+          </div>
+          <!-- Vertical videos — multi-col row -->
+          <div class="videos-grid-vertical">
+            <div class="yt-embed" data-id="QKLDjUhIp_Q" data-orientation="vertical"></div>
+            <!-- Add vertical videos here -->
+            <!-- <div class="yt-embed" data-id="YOUTUBE_VIDEO_ID" data-orientation="vertical"></div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Photos -->
+      <div class="bg-ink" style="padding-block: var(--space-lg);">
+        <div class="container">
+          <h2 class="section-heading section-heading--gold">Photos</h2>
+          <!-- JS renders preview of 6 photos -->
+          <div id="gallery-container" class="gallery-grid" data-preview="6"></div>
+          <div class="shows-footer">
+            <a href="gallery.html">View All Photos &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── Section 5: Songs ────────────────────────── -->
+    <section id="songs" class="bg-surface section-pad">
+      <div class="container">
+        <h2 class="section-heading">Songs We Play</h2>
+        <p class="section-subtext">A sample from our setlist — refreshes every visit</p>
+        <!-- JS renders songs here from scripts/songs.js -->
+        <div id="songs-container" class="songs-grid"></div>
+      </div>
+    </section>
+
+    <!-- ─── Section 6: Book Us ──────────────────────── -->
+    <section id="book-us" class="bg-ink section-pad book-section">
+      <div class="container">
+        <div class="two-col">
+
+          <div class="book-copy">
+            <h2>Let's Make Your Event Unforgettable</h2>
+            <ul>
+              <li>
+                <div>
+                  <span class="book-q">How far in advance should I book?</span>
+                  <span class="book-a">We recommend at least 3 months — but we'll always do our best even on short notice. The earlier you reach out, the better our chances of making your event happen.</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="book-q">Do you supply sound and lights?</span>
+                  <span class="book-a">Yes! We have access to various sizes of sound and lighting setups and can accommodate rooms from 20 to 500 people.</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="book-q">What types of events do you play?</span>
+                  <span class="book-a">Weddings, corporate events, private parties, restaurants, bars, clubs, charity galas, and more.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <form
+              name="book-us"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              action="/thank-you.html"
+              novalidate
+              id="book-form"
+              class="book-form"
+            >
+              <!-- Required hidden fields for Netlify -->
+              <input type="hidden" name="form-name" value="book-us">
+              <!-- Honeypot spam trap -->
+              <input type="text" name="bot-field" style="display:none" tabindex="-1" aria-hidden="true">
+
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name or organization"
+                  required
+                  autocomplete="name"
+                >
+                <span class="field-error" id="name-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                  autocomplete="email"
+                >
+                <span class="field-error" id="email-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input
+                  type="date"
+                  id="event-date"
+                  name="event-date"
+                  required
+                >
+                <span class="field-error" id="event-date-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Phone (optional)"
+                  autocomplete="tel"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="message">Tell Us About Your Event</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Wedding reception for 150 guests, indoor venue, looking for 2 sets of classic rock and country..."
+                  required
+                ></textarea>
+                <span class="field-error" id="message-error" role="alert"></span>
+              </div>
+
+              <button type="submit" class="btn-primary btn-submit">
+                <span class="btn-spinner" id="btn-spinner" aria-hidden="true"></span>
+                <span id="btn-label">Send Booking Inquiry</span>
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <a href="mailto:booking@fivedollardown.com" class="footer-email">booking@fivedollardown.com</a>
+          <div class="footer-social" aria-label="Social media links">
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/FiveDollarDown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/fivedollardown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <!-- YouTube — TODO -->
+            <!-- TODO: add YouTube URL when confirmed -->
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on YouTube" style="display:none">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--c-ink)"/>
+              </svg>
+            </a>
+
+            <!-- TikTok — TODO -->
+            <!-- TODO: add TikTok URL when confirmed -->
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on TikTok" style="display:none">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+              </svg>
+            </a>
+
+          </div>
+        </div>
+
+        <nav aria-label="Footer navigation">
+          <ul class="footer-nav" role="list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#shows">Shows</a></li>
+            <li><a href="#media">Media</a></li>
+            <li><a href="#songs">Songs</a></li>
+            <li><a href="#book-us">Book Us</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p id="copyright"></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts (end of body) ───────────────────────── -->
+  <script src="scripts/shows.js"></script>
+  <script src="scripts/songs.js"></script>
+  <script src="scripts/gallery.js"></script>
+  <script src="scripts/youtube.js"></script>
+  <script src="scripts/main.js"></script>
+
+</body>
+</html>

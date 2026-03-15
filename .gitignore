@@ -1,0 +1,8 @@
+# OS
+.DS_Store
+
+# Loose video files in root
+*.mp4
+
+# Duplicate files
+"outline (1).md"

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Five Dollar Down — Past shows archive. Ottawa's premier party band.">
+  <title>Past Shows | Five Dollar Down</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html#hero" class="nav-logo" aria-label="Five Dollar Down — home">
+        <img src="assets/images/logo.svg" alt="Five Dollar Down" height="36">
+        <span class="nav-logo-text">Five Dollar Down</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#shows">Shows</a></li>
+        <li><a href="index.html#media">Media</a></li>
+        <li><a href="index.html#songs">Songs</a></li>
+        <li><a href="index.html#book-us" class="btn-primary">Book Us</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="nav-overlay-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html#about">About</a>
+    <a href="index.html#shows">Shows</a>
+    <a href="index.html#media">Media</a>
+    <a href="index.html#songs">Songs</a>
+    <a href="index.html#book-us">Book Us</a>
+  </div>
+
+  <main style="padding-top: 60px;">
+    <section class="bg-ink section-pad">
+      <div class="container">
+        <h2 class="section-heading section-heading--gold">Past Shows</h2>
+        <div id="past-shows-container"></div>
+        <div class="shows-footer" style="margin-top: var(--space-md);">
+          <a href="index.html#shows">&larr; Back to Upcoming Shows</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Five Dollar Down</div>
+          <div class="footer-tagline">Ottawa's premier party band</div>
+        </div>
+        <nav aria-label="Footer navigation">
+          <ul class="footer-nav" role="list">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#shows">Shows</a></li>
+            <li><a href="index.html#media">Media</a></li>
+            <li><a href="index.html#songs">Songs</a></li>
+            <li><a href="index.html#book-us">Book Us</a></li>
+          </ul>
+        </nav>
+        <div>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/FiveDollarDown" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/fivedollardown" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+          <a href="mailto:booking@fivedollardown.com" class="footer-email">booking@fivedollardown.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p id="copyright"></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/shows.js"></script>
+  <script src="scripts/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('past-shows-container');
+      if (!container || typeof splitShows !== 'function') return;
+
+      const { past } = splitShows();
+
+      if (past.length === 0) {
+        container.innerHTML = `<p class="shows-empty">No past shows on record yet.</p>`;
+        return;
+      }
+
+      const table = document.createElement('table');
+      table.className = 'past-shows-table';
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody id="past-shows-body"></tbody>
+      `;
+
+      const tbody = table.querySelector('#past-shows-body');
+
+      past.forEach(show => {
+        const dateObj   = new Date(show.date + 'T00:00:00');
+        const formatted = dateObj.toLocaleDateString('en-CA', {
+          year:  'numeric',
+          month: 'long',
+          day:   'numeric',
+        });
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${formatted}</td>
+          <td>${show.name}</td>
+          <td>${show.venue}</td>
+          <td>${show.city}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      container.appendChild(table);
+    });
+  </script>
+
+</body>
+</html>
