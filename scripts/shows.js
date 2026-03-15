@@ -3,7 +3,20 @@
 // Add shows here. Never edit index.html or past-shows.html for show data.
 
 const SHOWS = [
-  { date: "2025-04-25", name: "Metcalfe Curling Club Tournament", venue: "Metcalfe Curling Club",        city: "Metcalfe, ON",    tickets: "" },
+  { date: "2026-01-31", name: "Private Event",                    venue: "Private Venue",                city: "Fitzroy Harbour, ON", tickets: "" },
+  { date: "2025-12-31", name: "New Year's Eve",                   venue: "Private Venue",                city: "Arnprior, ON",     tickets: "" },
+  { date: "2025-12-12", name: "The Prescott",                     venue: "The Prescott",                 city: "Ottawa, ON",       tickets: "" },
+  { date: "2025-11-28", name: "Boston Pizza",                     venue: "Boston Pizza",                 city: "Renfrew, ON",      tickets: "" },
+  { date: "2025-11-14", name: "Boston Pizza",                     venue: "Boston Pizza",                 city: "Renfrew, ON",      tickets: "" },
+  { date: "2025-11-08", name: "Music for Mom",                    venue: "Private Venue",                city: "Arnprior, ON",     tickets: "" },
+  { date: "2025-11-01", name: "Private Event",                    venue: "Private Venue",                city: "Kemptville, ON",   tickets: "" },
+  { date: "2025-10-25", name: "Joe's Spencercity Bar & Grill",    venue: "Joe's Spencercity Bar & Grill",city: "Spencerville, ON", tickets: "" },
+  { date: "2025-10-18", name: "Russell Barn Dance",               venue: "Private Venue",                city: "Russell, ON",      tickets: "" },
+  { date: "2025-09-27", name: "Cameron's Point Family Campground",venue: "Cameron's Point Family Campground", city: "Summerstown, ON", tickets: "" },
+  { date: "2025-09-19", name: "Private Banquet",                  venue: "Private Venue",                city: "Kemptville, ON",   tickets: "" },
+  { date: "2025-08-08", name: "Boston Pizza",                     venue: "Boston Pizza",                 city: "Renfrew, ON",      tickets: "" },
+  { date: "2025-06-14", name: "Private Event",                    venue: "Private Venue",                city: "Cardinal, ON",     tickets: "" },
+  { date: "2025-04-25", name: "Metcalfe Curling Club Tournament", venue: "Metcalfe Curling Club",        city: "Metcalfe, ON",     tickets: "" },
   { date: "2025-01-25", name: "The Cupboard",                     venue: "The Cupboard",                 city: "Arnprior, ON",    tickets: "" },
   { date: "2024-11-15", name: "Homestead Pub",                    venue: "Homestead Pub",                city: "Embrun, ON",      tickets: "" },
   { date: "2024-10-26", name: "Private Event",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
