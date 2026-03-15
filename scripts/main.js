@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'show-card';
         card.innerHTML = `
           <div class="show-card-name">${show.name}</div>
-          <div class="show-card-venue">${show.venue}</div>
           <div class="show-card-city">${show.city}</div>
           <div class="show-card-date">${formatted}</div>
           ${ticketsBtn}
