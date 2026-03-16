@@ -1,66 +1,97 @@
 [
   {
+    "src": "assets/gallery/pinned-show-001.webp",
+    "num": "show-001",
+    "pinned": true
+  },
+  {
+    "src": "assets/gallery/pinned-show-002.webp",
+    "num": "show-002",
+    "pinned": true
+  },
+  {
+    "src": "assets/gallery/show-019.webp",
+    "num": "019",
+    "pinned": false
+  },
+  {
+    "src": "assets/gallery/show-018.webp",
+    "num": "018",
+    "pinned": false
+  },
+  {
+    "src": "assets/gallery/show-017.webp",
+    "num": "017",
+    "pinned": false
+  },
+  {
     "src": "assets/gallery/show-016.webp",
-    "num": "016"
+    "num": "016",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-015.webp",
-    "num": "015"
+    "num": "015",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-014.webp",
-    "num": "014"
+    "num": "014",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-013.webp",
-    "num": "013"
+    "num": "013",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-012.webp",
-    "num": "012"
+    "num": "012",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-011.webp",
-    "num": "011"
+    "num": "011",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-010.webp",
-    "num": "010"
+    "num": "010",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-009.webp",
-    "num": "009"
+    "num": "009",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-008.webp",
-    "num": "008"
+    "num": "008",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-007.webp",
-    "num": "007"
+    "num": "007",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-006.webp",
-    "num": "006"
+    "num": "006",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-005.webp",
-    "num": "005"
+    "num": "005",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-004.webp",
-    "num": "004"
+    "num": "004",
+    "pinned": false
   },
   {
     "src": "assets/gallery/show-003.webp",
-    "num": "003"
-  },
-  {
-    "src": "assets/gallery/show-002.webp",
-    "num": "002"
-  },
-  {
-    "src": "assets/gallery/show-001.webp",
-    "num": "001"
+    "num": "003",
+    "pinned": false
   }
 ]

@@ -17,7 +17,8 @@ body {
   font-size: 17px;
   font-weight: 400;
   color: var(--c-white);
-  background: var(--c-black);
+  background-color: var(--c-black);
+  background-image: var(--texture-noise);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -109,8 +110,8 @@ section {
 }
 
 /* ─── Surface backgrounds ────────────────────────────── */
-.bg-ink     { background: var(--c-ink); }
-.bg-surface { background: var(--c-surface); }
+.bg-ink     { background-color: var(--c-ink);     background-image: var(--texture-noise); }
+.bg-surface { background-color: var(--c-surface); background-image: var(--texture-noise); }
 
 /* ─── Two-column layout ──────────────────────────────── */
 .two-col {

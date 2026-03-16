@@ -2,8 +2,9 @@
 // Five Dollar Down — Gallery photos and lightbox
 //
 // ─── To add new photos ───────────────────────────────────────────────────────
-// 1. Drop show-NNN.webp into assets/gallery/ (next number in sequence)
-// 2. Push to GitHub — Netlify build regenerates gallery-manifest.json automatically
+// Regular photos: drop show-NNN.webp/jpg into assets/gallery/ (next number in sequence)
+// Pinned photos:  name the file pinned-<anything>.webp/jpg — they always appear first
+// Push to GitHub — Netlify build regenerates gallery-manifest.json automatically
 // No other changes needed.
 //
 // Optional: add a custom alt text entry to PHOTO_ALTS below by photo number.
@@ -39,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(manifest => {
       const photos = manifest.map(entry => ({
         src: entry.src,
-        alt: PHOTO_ALTS[entry.num] || `Five Dollar Down live — ${entry.num}`,
+        alt: PHOTO_ALTS[entry.num] || `Five Dollar Down live`,
+        pinned: entry.pinned || false,
       }));
       renderGallery(container, photos);
     })
@@ -57,7 +59,10 @@ function renderGallery(container, allPhotos) {
   }
 
   // Limit to preview count if set (e.g. data-preview="6" on index.html)
-  const previewAttr    = container.dataset.preview;
+  const isDesktop      = window.matchMedia('(min-width: 1024px)').matches;
+  const previewAttr    = isDesktop && container.dataset.previewDesktop
+                           ? container.dataset.previewDesktop
+                           : container.dataset.preview;
   const photosToRender = previewAttr ? allPhotos.slice(0, parseInt(previewAttr, 10)) : allPhotos;
 
   // ─── Render grid ──────────────────────────────────────

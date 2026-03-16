@@ -2,37 +2,31 @@
 /* Five Dollar Down — Photo grid, YouTube embeds, lightbox */
 
 /* ─── Videos grid ────────────────────────────────────── */
-/* Landscape videos — 2-col grid */
+/* Landscape videos */
 .videos-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-md);
 }
 
-@media (min-width: 768px) {
-  .videos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.videos-grid .yt-embed {
+  flex: 0 1 520px;
+  min-width: 280px;
 }
 
-/* Vertical videos — up to 4 per row, smaller */
+/* Vertical videos */
 .videos-grid-vertical {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-md);
-  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
 }
 
-@media (min-width: 768px) {
-  .videos-grid-vertical {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .videos-grid-vertical {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.videos-grid-vertical .yt-embed {
+  flex: 0 1 260px;
+  min-width: 160px;
 }
 
 .yt-embed {
