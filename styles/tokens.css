@@ -6,15 +6,18 @@
 :root {
   /* Brand colors */
   --c-black:      #020608;
-  --c-ink:        #071218;
-  --c-ink-2:      #071E22;
+  --c-ink:        #0A1B29;
+  --c-ink-2:      #0F2A3C;
   --c-accent:     #00D4FF;              /* cyan — primary accent */
   --c-accent-lt:  #FF2D9B;             /* magenta — hover states, badges, highlights */
   --c-accent-dim: rgba(0, 212, 255, 0.10);
 
   /* Neutral surfaces */
-  --c-surface:    #071218;
-  --c-surface-2:  #071E22;
+  --c-surface:    #050f14;
+  --c-surface-2:  #0A1E28;
+
+  /* Line texture */
+  --texture-lines: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='30' x2='30' y2='0' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3C/svg%3E");
   --c-white:      #FFFFFF;
   --c-border:     #005F6E;
   --c-muted:      #4A9AAA;

@@ -18,7 +18,6 @@ body {
   font-weight: 400;
   color: var(--c-white);
   background-color: var(--c-black);
-  background-image: var(--texture-noise);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -83,11 +82,21 @@ section {
 
 .section-pad {
   padding-block: var(--space-lg);
+  margin-top: 16px;
 }
 
 @media (min-width: 768px) {
   .section-pad {
     padding-block: var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    max-width: 1200px;
+    margin-inline: auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
   }
 }
 
@@ -109,9 +118,15 @@ section {
   margin-bottom: var(--space-md);
 }
 
+/* ─── Media section has no bg — kill its outer padding so only the border gap shows ── */
+#media { padding-block: 0; }
+
+/* ─── Gap between Watch Us Play and Photos ───────────── */
+#media .bg-ink { border-top: 16px solid var(--c-black); }
+
 /* ─── Surface backgrounds ────────────────────────────── */
-.bg-ink     { background-color: var(--c-ink);     background-image: var(--texture-noise); }
-.bg-surface { background-color: var(--c-surface); background-image: var(--texture-noise); }
+.bg-ink     { background-color: var(--c-ink); }
+.bg-surface { background-color: var(--c-surface); }
 
 /* ─── Two-column layout ──────────────────────────────── */
 .two-col {
