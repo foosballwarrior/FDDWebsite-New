@@ -54,7 +54,7 @@ const SHOWS = [
   { date: "2022-09-03", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
   { date: "2022-08-13", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
   { date: "2022-07-09", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
-  { date: "2026-04-03", name: "The Prescott",  venue: "The Prescott", city: "Ottawa, ON", tickets: "" },
+  { date: "2026-04-03", name: "The Prescott",  venue: "The Prescott", city: "Ottawa, ON", tickets: "https://www.facebook.com/share/1CFbKiHgFr/" },
   // Add upcoming shows above this line
 ];
 
