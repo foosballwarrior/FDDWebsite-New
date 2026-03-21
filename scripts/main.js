@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const ticketsBtn = show.tickets
-          ? `<a href="${show.tickets}" class="btn-ghost" target="_blank" rel="noopener noreferrer">Get Tickets</a>`
+          ? `<a href="${show.tickets}" class="btn-ghost" target="_blank" rel="noopener noreferrer">More Info</a>`
           : '';
 
         const card = document.createElement('div');
