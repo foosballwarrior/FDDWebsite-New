@@ -6,3 +6,9 @@
 
 # Duplicate files
 "outline (1).md"
+node_modules/
+.env.local
+server.js
+
+# Local Netlify folder
+.netlify

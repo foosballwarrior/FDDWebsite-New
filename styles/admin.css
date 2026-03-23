@@ -1,0 +1,472 @@
+/* styles/admin.css — Admin dashboard styles */
+/* Uses only tokens from tokens.css. Never hardcode hex or px values here. */
+
+/* ─── Auth wall ───────────────────────────────────────────────────────────── */
+
+.admin-auth {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-surface);
+}
+
+.admin-auth-box {
+  width: 100%;
+  max-width: 380px;
+  background: var(--c-ink-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.admin-auth-box h1 {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  font-size: 1.5rem;
+}
+
+.admin-auth-box .btn-primary {
+  width: 100%;
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+/* ─── Dashboard layout ────────────────────────────────────────────────────── */
+
+.admin-dashboard {
+  padding-top: 60px;
+  min-height: 100vh;
+  background: var(--c-surface);
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-toolbar h1 {
+  margin: 0;
+  flex: 1;
+  font-size: 1.5rem;
+}
+
+.admin-status {
+  font-size: 0.875rem;
+  color: var(--c-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* ─── File list table ─────────────────────────────────────────────────────── */
+
+.admin-file-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Desktop: rendered as <table> */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead th {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-muted);
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.admin-table tbody tr {
+  border-bottom: 1px solid rgba(0, 95, 110, 0.3);
+  transition: background var(--t-fast);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--c-ink-2);
+}
+
+.admin-table td {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--c-white);
+  vertical-align: middle;
+}
+
+.admin-table td.col-name {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.admin-table td.col-type {
+  color: var(--c-muted);
+  white-space: nowrap;
+}
+
+.admin-table td.col-size {
+  color: var(--c-muted);
+  white-space: nowrap;
+}
+
+.admin-table td.col-date {
+  color: var(--c-muted);
+  white-space: nowrap;
+  font-size: 0.8125rem;
+}
+
+.admin-table td.col-actions {
+  white-space: nowrap;
+}
+
+/* Action buttons in table */
+.admin-action-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--c-muted);
+  font-size: 0.8125rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+  font-family: inherit;
+}
+
+.admin-action-btn:hover {
+  color: var(--c-accent);
+  border-color: var(--c-accent);
+  background: var(--c-accent-dim);
+}
+
+.admin-action-btn.is-danger:hover {
+  color: #e07070;
+  border-color: rgba(224, 112, 112, 0.5);
+  background: rgba(224, 112, 112, 0.08);
+}
+
+/* ─── Mobile cards (shown when table is hidden) ───────────────────────────── */
+
+.admin-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.admin-card {
+  background: var(--c-ink-2);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+}
+
+.admin-card-name {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  margin-bottom: 0.25rem;
+  word-break: break-all;
+}
+
+.admin-card-meta {
+  font-size: 0.8rem;
+  color: var(--c-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.admin-card-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive: show table on wide, cards on narrow */
+.admin-table-wrap { display: block; }
+.admin-cards-wrap  { display: none; }
+
+@media (max-width: 700px) {
+  .admin-table-wrap { display: none; }
+  .admin-cards-wrap  { display: block; }
+}
+
+/* ─── View toggle ─────────────────────────────────────────────────────────── */
+
+.admin-view-toggle {
+  display: flex;
+  gap: 2px;
+  background: var(--c-ink-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.admin-view-btn {
+  background: none;
+  border: none;
+  color: var(--c-muted);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+
+.admin-view-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.admin-view-btn:hover {
+  color: var(--c-white);
+}
+
+.admin-view-btn.is-active {
+  background: var(--c-accent-dim);
+  color: var(--c-accent);
+}
+
+/* ─── Thumbnail grid ───────────────────────────────────────────────────────── */
+
+.admin-thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.admin-thumb-card {
+  background: var(--c-ink-2);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--t-fast), transform var(--t-fast);
+}
+
+.admin-thumb-card:hover {
+  border-color: var(--c-accent);
+  transform: translateY(-2px);
+}
+
+.admin-thumb-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--c-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-thumb-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-thumb-media .thumb-placeholder {
+  color: var(--c-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+}
+
+.admin-thumb-media .thumb-placeholder svg {
+  width: 36px;
+  height: 36px;
+  opacity: 0.5;
+}
+
+.admin-thumb-media .thumb-loading {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--c-border);
+  border-top-color: var(--c-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.admin-thumb-info {
+  padding: 0.5rem;
+}
+
+.admin-thumb-name {
+  font-size: 0.8rem;
+  color: var(--c-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.25rem;
+}
+
+.admin-thumb-meta {
+  font-size: 0.7rem;
+  color: var(--c-muted);
+}
+
+.admin-thumb-actions {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Load more ───────────────────────────────────────────────────────────── */
+
+.admin-load-more {
+  text-align: center;
+  padding-block: var(--space-md);
+}
+
+/* ─── Empty / loading states ──────────────────────────────────────────────── */
+
+.admin-empty {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--c-muted);
+}
+
+.admin-loading {
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  color: var(--c-muted);
+}
+
+/* Inline delete confirm */
+.admin-delete-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--c-ink-2);
+  border: 1px solid rgba(224, 112, 112, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8125rem;
+  color: #e07070;
+}
+
+.admin-delete-confirm button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  padding: 0 0.15rem;
+  font-family: inherit;
+}
+
+.admin-delete-confirm .confirm-yes {
+  color: #e07070;
+  font-weight: 600;
+}
+
+.admin-delete-confirm .confirm-no {
+  color: var(--c-muted);
+}
+
+/* ─── Modals ──────────────────────────────────────────────────────────────── */
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.admin-modal[hidden] { display: none; }
+
+.admin-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 8, 0.85);
+  cursor: pointer;
+}
+
+.admin-modal-content {
+  position: relative;
+  z-index: 1;
+  background: var(--c-ink-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  width: 100%;
+}
+
+.admin-modal-content--narrow {
+  max-width: 400px;
+}
+
+.admin-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--c-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+  transition: color var(--t-fast);
+  border-radius: var(--radius-sm);
+}
+
+.admin-modal-close:hover { color: var(--c-white); }
+
+/* Preview modal */
+.admin-preview-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(80vw, 960px);
+  max-height: 75vh;
+  overflow: hidden;
+}
+
+.admin-preview-media img,
+.admin-preview-media video {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.admin-preview-filename {
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--c-muted);
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Rename modal */
+.admin-modal-title {
+  margin-bottom: var(--space-md);
+  font-size: 1.125rem;
+}
+
+.admin-modal-actions {
+  display: flex;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  flex-wrap: wrap;
+}

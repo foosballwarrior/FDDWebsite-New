@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Send us your Five Dollar Down photos and videos.">
+  <title>Were You There? — Five Dollar Down</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/upload.css">
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="Five Dollar Down — home">
+        <img src="assets/images/logo.svg" alt="Five Dollar Down" height="36">
+        <span class="nav-logo-text">Five Dollar Down</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#shows">Shows</a></li>
+        <li><a href="index.html#media">Media</a></li>
+        <li><a href="index.html#songs">Songs</a></li>
+        <li><a href="index.html#book-us" class="btn-primary">Book Us</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay menu -->
+  <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="nav-overlay-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html#about">About</a>
+    <a href="index.html#shows">Shows</a>
+    <a href="index.html#media">Media</a>
+    <a href="index.html#songs">Songs</a>
+    <a href="index.html#book-us">Book Us</a>
+  </div>
+
+  <!-- ─── Hero ─────────────────────────────────────── -->
+  <section class="u-hero">
+    <p class="u-eyebrow">Fan submissions</p>
+    <h1>Were you<br>there?</h1>
+    <p class="u-hero-sub">Send us your photos and videos from the show — the good ones end up in the gallery.</p>
+  </section>
+
+  <!-- ─── Main body (hidden on success) ───────────── -->
+  <div class="u-body" id="upload-body">
+
+    <!-- Left: drop zone + progress -->
+    <div class="u-left">
+      <div class="u-drop-zone" id="upload-zone">
+        <svg width="52" height="44" viewBox="0 0 52 44" fill="none" aria-hidden="true">
+          <rect x="2" y="11" width="48" height="30" rx="5" stroke="var(--c-accent)" stroke-width="2"/>
+          <circle cx="26" cy="26" r="10" stroke="var(--c-accent)" stroke-width="2"/>
+          <circle cx="26" cy="26" r="4.5" fill="var(--c-accent)" opacity="0.25"/>
+          <path d="M17 11L20.5 3H31.5L35 11" stroke="var(--c-accent)" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="39" y="17" width="6" height="3.5" rx="1.5" fill="var(--c-accent)" opacity="0.45"/>
+        </svg>
+        <p class="u-drop-title">Drop your files here</p>
+        <p class="u-drop-sub">Drag and drop photos or videos<br>from your phone or computer</p>
+        <button class="u-browse-btn" type="button" id="browse-btn">Browse files</button>
+        <input
+          type="file"
+          id="file-input"
+          accept="image/jpeg,image/png,image/heic,image/webp,video/mp4,video/quicktime,video/*,image/*"
+          multiple
+          style="display:none"
+          aria-label="Upload photos or videos"
+        >
+        <p class="u-file-types">JPG, PNG, HEIC, MP4, MOV · Any size</p>
+      </div>
+
+      <!-- Overall progress (hidden until uploads start) -->
+      <div class="u-overall" id="upload-overall" hidden>
+        <div class="u-overall-row">
+          <span id="overall-label">Uploading…</span>
+          <span id="overall-pct">0%</span>
+        </div>
+        <div class="u-overall-track">
+          <div class="u-overall-fill" id="overall-fill"></div>
+        </div>
+        <div class="u-overall-stats" id="overall-stats"></div>
+      </div>
+
+      <!-- Per-file list -->
+      <ul class="u-file-list" id="upload-file-list" role="list"></ul>
+    </div>
+
+    <!-- Right: optional info + submit -->
+    <form class="u-form" id="upload-form" novalidate>
+
+      <div class="u-field">
+        <label for="submitter-name">Your name <span class="u-optional">(optional)</span></label>
+        <input type="text" id="submitter-name" name="name" placeholder="First and last name" autocomplete="name">
+      </div>
+
+      <div class="u-field">
+        <label for="submitter-email">Email <span class="u-optional">(optional)</span></label>
+        <input type="email" id="submitter-email" name="email" placeholder="We'll only reach out if we feature your shot" autocomplete="email">
+      </div>
+
+      <button type="submit" class="u-submit-btn" id="submit-btn" disabled>
+        Send us your shots
+      </button>
+
+      <p class="u-disclaimer">
+        Sometimes we get dick pics, so we check them before they go live.<br>
+        Keep it fun, keep it legal.
+      </p>
+
+    </form>
+
+  </div>
+
+  <!-- ─── Success state ────────────────────────────── -->
+  <div class="u-success" id="success-state" style="display:none">
+    <div class="u-check-circle">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <path d="M2 8l6 6L20 2" stroke="var(--c-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>Got it, thanks!</h2>
+    <p>We'll have a look and if your shots make the cut, they'll show up in the gallery. We'll drop you an email if we feature you.</p>
+    <a href="index.html#media">← Back to Media</a>
+  </div>
+
+  <!-- ─── Footer ──────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-social" aria-label="Contact and social links">
+        <a href="https://www.facebook.com/FiveDollarDown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fivedollardown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="mailto:booking@fivedollardown.com" aria-label="Email booking@fivedollardown.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p id="copyright"></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal nav hamburger (main.js not loaded to avoid show/song rendering)
+    (function() {
+      const hamburger = document.querySelector('.nav-hamburger');
+      const overlay   = document.querySelector('.nav-overlay');
+      const closeBtn  = document.querySelector('.nav-overlay-close');
+      if (hamburger && overlay && closeBtn) {
+        hamburger.addEventListener('click', () => {
+          overlay.classList.add('is-open');
+          hamburger.setAttribute('aria-expanded', 'true');
+        });
+        closeBtn.addEventListener('click', () => {
+          overlay.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      }
+      // Copyright year
+      const cp = document.getElementById('copyright');
+      if (cp) cp.textContent = `© ${new Date().getFullYear()} Five Dollar Down. All rights reserved.`;
+    })();
+  </script>
+  <script src="scripts/upload.js"></script>
+
+</body>
+</html>
