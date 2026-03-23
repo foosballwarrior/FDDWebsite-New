@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /thank-you.html
+Disallow: /upload.html
+Disallow: /admin.html
 
 Sitemap: https://fivedollardown.com/sitemap.xml

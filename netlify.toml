@@ -1,6 +1,10 @@
 [build]
-  command = "node scripts/build-gallery-manifest.js"
+  command = "npm install && node scripts/build-gallery-manifest.js"
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/assets/*"
@@ -11,3 +15,8 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Cache-Control = "no-store"

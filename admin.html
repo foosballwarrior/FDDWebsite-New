@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Five Dollar Down — Admin Dashboard">
+  <title>Admin | Five Dollar Down</title>
+
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+
+  <main>
+
+    <!-- ─── Auth wall (shown until logged in) ────── -->
+    <section class="admin-auth" id="admin-auth">
+      <div class="admin-auth-box">
+        <h1>Admin</h1>
+        <div class="form-group">
+          <label for="admin-pw">Password</label>
+          <input
+            type="password"
+            id="admin-pw"
+            autocomplete="current-password"
+            placeholder="Enter admin password"
+          >
+          <span class="field-error" id="admin-pw-error" role="alert"></span>
+        </div>
+        <button class="btn-primary" id="admin-login-btn" style="width: 100%; margin-top: var(--space-sm);">
+          <span class="btn-spinner" id="admin-spinner" aria-hidden="true"></span>
+          <span id="admin-login-label">Login</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ─── Dashboard (hidden until logged in) ───── -->
+    <section class="admin-dashboard" id="admin-dashboard" style="display:none">
+      <div class="container">
+
+        <div class="admin-toolbar">
+          <h1>Media Files</h1>
+          <div class="admin-view-toggle" role="group" aria-label="View mode">
+            <button class="admin-view-btn" id="view-list-btn" title="List view" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            </button>
+            <button class="admin-view-btn is-active" id="view-grid-btn" title="Grid view" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </button>
+          </div>
+          <button class="btn-ghost" id="admin-refresh-btn">Refresh</button>
+          <button class="btn-ghost" id="admin-logout-btn">Logout</button>
+        </div>
+
+        <p class="admin-status" id="admin-status"></p>
+
+        <!-- Thumbnail grid view -->
+        <div class="admin-thumb-wrap" id="admin-thumb-wrap">
+          <div class="admin-thumb-grid" id="admin-thumb-grid"></div>
+        </div>
+
+        <!-- Desktop table -->
+        <div class="admin-table-wrap" id="admin-table-wrap">
+          <table class="admin-table" id="admin-table" aria-label="Uploaded files">
+            <thead>
+              <tr>
+                <th>Filename</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Uploaded</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Mobile cards -->
+        <div class="admin-cards-wrap" id="admin-cards-wrap">
+          <div class="admin-cards" id="admin-cards"></div>
+        </div>
+
+        <!-- Load more -->
+        <div class="admin-load-more" id="admin-load-more" hidden>
+          <button class="btn-ghost" id="admin-load-more-btn">Load More</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Preview Modal ───────────────────────────── -->
+  <div class="admin-modal" id="admin-preview-modal" role="dialog" aria-modal="true" aria-label="File preview" hidden>
+    <div class="admin-modal-backdrop" id="preview-backdrop"></div>
+    <div class="admin-modal-content" style="width: auto;">
+      <button class="admin-modal-close" id="preview-close" aria-label="Close preview">&#x2715;</button>
+      <div class="admin-preview-media" id="preview-media"></div>
+      <p class="admin-preview-filename" id="preview-filename"></p>
+    </div>
+  </div>
+
+  <!-- ─── Rename Modal ────────────────────────────── -->
+  <div class="admin-modal" id="admin-rename-modal" role="dialog" aria-modal="true" aria-label="Rename file" hidden>
+    <div class="admin-modal-backdrop" id="rename-backdrop"></div>
+    <div class="admin-modal-content admin-modal-content--narrow">
+      <button class="admin-modal-close" id="rename-close" aria-label="Close">&#x2715;</button>
+      <h2 class="admin-modal-title">Rename File</h2>
+      <div class="form-group">
+        <label for="rename-input">New filename</label>
+        <input type="text" id="rename-input" autocomplete="off">
+        <span class="field-error" id="rename-error" role="alert"></span>
+      </div>
+      <div class="admin-modal-actions">
+        <button class="btn-primary" id="rename-confirm-btn">Rename</button>
+        <button class="btn-ghost" id="rename-cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/admin.js"></script>
+
+</body>
+</html>

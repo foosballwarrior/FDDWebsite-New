@@ -1,0 +1,376 @@
+/* styles/upload.css — Upload page (Were You There?) */
+/* Relies on tokens.css, main.css, components.css being loaded first */
+
+/* ─── Hero ─────────────────────────────────────────────────────────────────── */
+
+.u-hero {
+  padding: 64px 32px 48px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  padding-top: calc(60px + 64px); /* offset for fixed nav */
+}
+
+.u-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 12px;
+}
+
+.u-hero h1 {
+  font-size: clamp(52px, 10vw, 88px);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  color: var(--c-white);
+  margin-bottom: 18px;
+}
+
+.u-hero-sub {
+  font-size: 15px;
+  color: var(--c-muted);
+  max-width: 480px;
+  line-height: 1.65;
+}
+
+/* ─── Body layout ──────────────────────────────────────────────────────────── */
+
+.u-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 48px;
+  padding: 52px 32px 64px;
+  max-width: 1000px;
+}
+
+.u-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Drop zone ────────────────────────────────────────────────────────────── */
+
+.u-drop-zone {
+  border: 1.5px dashed var(--c-accent);
+  border-radius: var(--radius-lg);
+  background: var(--c-accent-dim);
+  padding: 52px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  min-height: 280px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.u-drop-zone:hover,
+.u-drop-zone.is-dragging {
+  background: rgba(0, 212, 255, 0.12);
+}
+
+.u-drop-zone svg { margin-bottom: 20px; }
+
+.u-drop-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--c-white);
+  margin-bottom: 8px;
+}
+
+.u-drop-sub {
+  font-size: 13px;
+  color: var(--c-muted);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+
+.u-browse-btn {
+  border: 1.5px solid var(--c-accent);
+  color: var(--c-accent);
+  background: transparent;
+  border-radius: 24px;
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.u-browse-btn:hover {
+  background: var(--c-accent);
+  color: var(--c-black);
+}
+
+.u-file-types {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.28);
+  margin-top: 16px;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Overall progress ─────────────────────────────────────────────────────── */
+
+.u-overall {
+  width: 100%;
+}
+
+.u-overall-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--c-muted);
+  margin-bottom: 6px;
+}
+
+.u-overall-track {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.u-overall-fill {
+  height: 100%;
+  background: var(--c-accent);
+  border-radius: 2px;
+  transition: width 0.15s linear;
+  width: 0%;
+}
+
+.u-overall-stats {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: right;
+}
+
+/* ─── Per-file list ────────────────────────────────────────────────────────── */
+
+.u-file-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* ─── File item ────────────────────────────────────────────────────────────── */
+
+.upload-file-item {
+  background: var(--c-surface-2);
+  border: 0.5px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: grid;
+  grid-template-areas:
+    "name   cancel"
+    "bar    bar"
+    "status status";
+  grid-template-columns: 1fr auto;
+  gap: 6px 10px;
+  transition: border-color 0.15s;
+}
+
+.upload-file-item.is-done    { border-color: rgba(0, 212, 255, 0.4); }
+.upload-file-item.is-error   { border-color: rgba(255, 45, 155, 0.4); }
+.upload-file-item.is-cancelled { opacity: 0.45; }
+
+.upload-file-name {
+  grid-area: name;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: center;
+}
+
+.upload-file-meta { display: none; }
+
+.upload-file-cancel {
+  grid-area: cancel;
+  background: none;
+  border: none;
+  color: var(--c-muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.15s;
+  align-self: center;
+}
+
+.upload-file-cancel:hover   { color: var(--c-accent-lt); }
+.upload-file-cancel:disabled { opacity: 0.25; cursor: default; }
+
+.upload-file-track {
+  grid-area: bar;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.upload-file-fill {
+  height: 100%;
+  background: var(--c-accent);
+  border-radius: 1px;
+  transition: width 0.1s linear;
+  width: 0%;
+}
+
+.upload-file-item.is-done  .upload-file-fill { width: 100%; }
+.upload-file-item.is-error .upload-file-fill { background: var(--c-accent-lt); }
+
+.upload-file-status {
+  grid-area: status;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.upload-file-item.is-done  .status-label { color: var(--c-accent); }
+.upload-file-item.is-error .status-label { color: var(--c-accent-lt); }
+
+/* ─── Form ─────────────────────────────────────────────────────────────────── */
+
+.u-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-field {
+  margin-bottom: 20px;
+}
+
+.u-form label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: 7px;
+}
+
+.u-optional {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.u-form input[type="text"],
+.u-form input[type="email"] {
+  width: 100%;
+  background: var(--c-surface-2);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--c-white);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.u-form input::placeholder { color: var(--c-muted); }
+
+.u-form input:focus {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px var(--c-accent-dim);
+}
+
+.u-submit-btn {
+  width: 100%;
+  background: var(--c-accent);
+  color: var(--c-black);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+}
+
+.u-submit-btn:hover:not(:disabled) { background: var(--c-accent-lt); color: var(--c-white); }
+.u-submit-btn:active:not(:disabled) { transform: scale(0.99); }
+.u-submit-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.u-disclaimer {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.28);
+  line-height: 1.6;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ─── Success state ────────────────────────────────────────────────────────── */
+
+.u-success {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px;
+  gap: 16px;
+  min-height: 60vh;
+}
+
+.u-check-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--c-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.u-success h2 {
+  font-size: 42px;
+  letter-spacing: 0.04em;
+  color: var(--c-white);
+}
+
+.u-success p {
+  font-size: 14px;
+  color: var(--c-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.u-success a {
+  font-size: 13px;
+  color: var(--c-accent);
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.u-success a:hover { text-decoration: underline; }
+
+/* ─── Mobile ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .u-hero { padding: 48px 20px 36px; padding-top: calc(60px + 48px); }
+  .u-body {
+    grid-template-columns: 1fr;
+    padding: 36px 20px 48px;
+    gap: 36px;
+  }
+}
