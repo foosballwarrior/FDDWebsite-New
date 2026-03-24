@@ -290,7 +290,6 @@
 
     video.muted        = true;
     video.preload      = 'metadata';
-    video.crossOrigin  = 'anonymous';
     video.style.display = 'none';
     document.body.appendChild(video);
 
@@ -299,14 +298,18 @@
     }, { once: true });
 
     video.addEventListener('seeked', () => {
-      canvas.width  = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-      const img = document.createElement('img');
-      img.alt = basename(key);
-      img.src = canvas.toDataURL('image/jpeg', 0.8);
-      mediaEl.innerHTML = '';
-      mediaEl.appendChild(img);
+      try {
+        canvas.width  = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        const img = document.createElement('img');
+        img.alt = basename(key);
+        img.src = canvas.toDataURL('image/jpeg', 0.8);
+        mediaEl.innerHTML = '';
+        mediaEl.appendChild(img);
+      } catch {
+        mediaEl.innerHTML = `<div class="thumb-placeholder">${videoIcon()}<span>Video</span></div>`;
+      }
       video.remove();
     }, { once: true });
 
