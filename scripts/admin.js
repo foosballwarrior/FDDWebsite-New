@@ -285,37 +285,23 @@
   }
 
   function loadVideoThumb(mediaEl, url, key) {
-    const video  = document.createElement('video');
-    const canvas = document.createElement('canvas');
+    const video = document.createElement('video');
 
-    video.muted        = true;
-    video.preload      = 'metadata';
-    video.style.display = 'none';
-    document.body.appendChild(video);
+    video.muted   = true;
+    video.preload = 'metadata';
+    video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
 
     video.addEventListener('loadedmetadata', () => {
       video.currentTime = Math.min(1, video.duration * 0.1);
     }, { once: true });
 
     video.addEventListener('seeked', () => {
-      try {
-        canvas.width  = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        const img = document.createElement('img');
-        img.alt = basename(key);
-        img.src = canvas.toDataURL('image/jpeg', 0.8);
-        mediaEl.innerHTML = '';
-        mediaEl.appendChild(img);
-      } catch {
-        mediaEl.innerHTML = `<div class="thumb-placeholder">${videoIcon()}<span>Video</span></div>`;
-      }
-      video.remove();
+      mediaEl.innerHTML = '';
+      mediaEl.appendChild(video);
     }, { once: true });
 
     video.addEventListener('error', () => {
       mediaEl.innerHTML = `<div class="thumb-placeholder">${videoIcon()}<span>Video</span></div>`;
-      video.remove();
     }, { once: true });
 
     video.src = url;
