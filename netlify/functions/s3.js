@@ -31,6 +31,7 @@ const s3 = new S3Client({
     accessKeyId:     process.env.FDD_AWS_KEY,
     secretAccessKey: process.env.FDD_AWS_SECRET,
   },
+  requestChecksumCalculation: 'WHEN_REQUIRED',
 });
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
