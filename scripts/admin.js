@@ -10,6 +10,7 @@
   // ─── State ──────────────────────────────────────────────────────────────────
 
   const state = {
+    username: sessionStorage.getItem('adminUsername') || null,
     password: sessionStorage.getItem('adminPassword') || null,
     files: [],
     loading: false,
@@ -25,7 +26,7 @@
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action, adminPassword: state.password, ...body }),
+      body: JSON.stringify({ action, adminUsername: state.username, adminPassword: state.password, ...body }),
     });
     const data = await res.json();
     if (res.status === 401) {
@@ -40,7 +41,9 @@
   // ─── Auth ────────────────────────────────────────────────────────────────────
 
   function clearAuth() {
+    state.username = null;
     state.password = null;
+    sessionStorage.removeItem('adminUsername');
     sessionStorage.removeItem('adminPassword');
   }
 
@@ -540,14 +543,15 @@
 
   // Login
   document.getElementById('admin-login-btn').addEventListener('click', async () => {
+    const user    = document.getElementById('admin-user').value.trim();
     const pw      = document.getElementById('admin-pw').value;
     const errorEl = document.getElementById('admin-pw-error');
     const spinner = document.getElementById('admin-spinner');
     const label   = document.getElementById('admin-login-label');
     const btn     = document.getElementById('admin-login-btn');
 
-    if (!pw) {
-      errorEl.textContent = 'Please enter the admin password.';
+    if (!user || !pw) {
+      errorEl.textContent = 'Please enter your username and password.';
       errorEl.classList.add('is-visible');
       return;
     }
@@ -558,22 +562,25 @@
     spinner.classList.add('is-visible');
     label.textContent = 'Logging in…';
 
+    state.username = user;
     state.password = pw;
 
     try {
-      // Test the password by listing objects (small call)
+      // Test credentials by listing objects (small call)
       console.log('[admin] attempting login...');
       const result = await callAPI('list-objects', { prefix: 'uploads/' });
       console.log('[admin] login success, files:', result.files.length);
+      sessionStorage.setItem('adminUsername', user);
       sessionStorage.setItem('adminPassword', pw);
       showDashboard();
     } catch (e) {
       console.error('[admin] login error:', e);
       if (e.message === 'Unauthorized') {
+        state.username = null;
         state.password = null;
-        errorEl.textContent = 'Incorrect password.';
+        errorEl.textContent = 'Incorrect username or password.';
         errorEl.classList.add('is-visible');
-        document.getElementById('admin-pw').focus();
+        document.getElementById('admin-user').focus();
       } else {
         errorEl.textContent = `Error: ${e.message}`;
         errorEl.classList.add('is-visible');
@@ -585,6 +592,10 @@
     }
   });
 
+  document.getElementById('admin-user').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('admin-pw').focus();
+  });
+
   document.getElementById('admin-pw').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') document.getElementById('admin-login-btn').click();
   });
@@ -593,6 +604,7 @@
   document.getElementById('admin-logout-btn').addEventListener('click', () => {
     clearAuth();
     showAuth();
+    document.getElementById('admin-user').value = '';
     document.getElementById('admin-pw').value = '';
   });
 
@@ -649,11 +661,12 @@
 
   // ─── Init ─────────────────────────────────────────────────────────────────────
 
-  if (state.password) {
-    // Resume session — verify password then go straight to dashboard
+  if (state.username && state.password) {
+    // Resume session — verify credentials then go straight to dashboard
     (async () => {
       try {
         await callAPI('list-objects', { prefix: 'uploads/' });
+        sessionStorage.setItem('adminUsername', state.username);
         sessionStorage.setItem('adminPassword', state.password);
         showDashboard();
       } catch {

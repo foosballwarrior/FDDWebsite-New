@@ -19,6 +19,7 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 
 const REGION        = process.env.FDD_AWS_REGION;
 const BUCKET        = process.env.FDD_S3_BUCKET;
+const ADMIN_USER    = process.env.FDD_ADMIN_USERNAME;
 const ADMIN_PW      = process.env.FDD_ADMIN_PASSWORD;
 const UPLOAD_PREFIX = 'uploads/';
 
@@ -53,8 +54,9 @@ function err(message, status = 400) {
 }
 
 function checkAdmin(body) {
-  if (!ADMIN_PW) return err('Admin password not configured', 500);
-  if (!body.adminPassword || body.adminPassword !== ADMIN_PW) {
+  if (!ADMIN_USER || !ADMIN_PW) return err('Admin credentials not configured', 500);
+  if (!body.adminUsername || body.adminUsername !== ADMIN_USER ||
+      !body.adminPassword || body.adminPassword !== ADMIN_PW) {
     return err('Unauthorized', 401);
   }
   return null;
