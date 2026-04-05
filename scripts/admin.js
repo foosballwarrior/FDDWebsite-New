@@ -85,8 +85,10 @@
   function fmtSubmitter(key) {
     const sub = state.submitterMap[key];
     if (!sub) return '—';
-    const parts = [sub.name, sub.email].filter(Boolean);
-    return parts.length ? escHtml(parts.join(' · ')) : '—';
+    const name  = sub.name  ? escHtml(sub.name)  : '';
+    const email = sub.email ? escHtml(sub.email) : '';
+    if (name && email) return `${name}<br><span style="font-size:0.75rem">${email}</span>`;
+    return name || email || '—';
   }
 
   function fmtDate(iso) {
