@@ -125,6 +125,15 @@
   font-size: 0.8125rem;
 }
 
+.admin-table td.col-submitter {
+  color: var(--c-muted);
+  font-size: 0.8125rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .admin-table td.col-actions {
   white-space: nowrap;
 }

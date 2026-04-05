@@ -18,6 +18,7 @@
     isTruncated: false,
     renameKey: null,       // key currently being renamed
     viewMode: 'grid',      // 'list' | 'grid'
+    submitterMap: {},      // uploadKey → { name, email }
   };
 
   // ─── API ────────────────────────────────────────────────────────────────────
@@ -81,6 +82,13 @@
     return `${(n / (1024 * 1024 * 1024)).toFixed(2)} GB`;
   }
 
+  function fmtSubmitter(key) {
+    const sub = state.submitterMap[key];
+    if (!sub) return '—';
+    const parts = [sub.name, sub.email].filter(Boolean);
+    return parts.length ? escHtml(parts.join(' · ')) : '—';
+  }
+
   function fmtDate(iso) {
     if (!iso) return '—';
     return new Date(iso).toLocaleDateString('en-CA', {
@@ -91,6 +99,20 @@
 
   // ─── Load files ──────────────────────────────────────────────────────────────
 
+  async function loadSubmissions() {
+    try {
+      const data = await callAPI('list-submissions');
+      state.submitterMap = {};
+      (data.submissions || []).forEach(sub => {
+        (sub.keys || []).forEach(key => {
+          state.submitterMap[key] = { name: sub.name || '', email: sub.email || '' };
+        });
+      });
+    } catch {
+      // Non-fatal — submitter column will show '—'
+    }
+  }
+
   async function loadFiles(append = false) {
     if (state.loading) return;
     state.loading = true;
@@ -100,7 +122,11 @@
       const body = { prefix: 'uploads/' };
       if (append && state.nextToken) body.continuationToken = state.nextToken;
 
-      const data = await callAPI('list-objects', body);
+      // On initial load, fetch submissions in parallel with files
+      const [data] = await Promise.all([
+        callAPI('list-objects', body),
+        ...(append ? [] : [loadSubmissions()]),
+      ]);
 
       if (append) {
         state.files = state.files.concat(data.files);
@@ -154,7 +180,7 @@
 
     if (state.files.length === 0) {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td colspan="5" class="admin-empty">No files found.</td>`;
+      tr.innerHTML = `<td colspan="6" class="admin-empty">No files found.</td>`;
       tbody.appendChild(tr);
       return;
     }
@@ -167,6 +193,7 @@
         <td class="col-type">${getFileType(file.key)}</td>
         <td class="col-size">${fmtBytes(file.size)}</td>
         <td class="col-date">${fmtDate(file.lastModified)}</td>
+        <td class="col-submitter">${fmtSubmitter(file.key)}</td>
         <td class="col-actions">${actionButtons(file.key)}</td>
       `;
       attachRowHandlers(tr, file.key);
@@ -189,7 +216,7 @@
       div.dataset.key = file.key;
       div.innerHTML = `
         <div class="admin-card-name">${escHtml(basename(file.key))}</div>
-        <div class="admin-card-meta">${getFileType(file.key)} · ${fmtBytes(file.size)} · ${fmtDate(file.lastModified)}</div>
+        <div class="admin-card-meta">${getFileType(file.key)} · ${fmtBytes(file.size)} · ${fmtDate(file.lastModified)}${(() => { const s = state.submitterMap[file.key]; if (!s) return ''; const p = [s.name, s.email].filter(Boolean); return p.length ? ' · ' + escHtml(p.join(', ')) : ''; })()}</div>
         <div class="admin-card-actions">${actionButtons(file.key)}</div>
       `;
       attachRowHandlers(div, file.key);

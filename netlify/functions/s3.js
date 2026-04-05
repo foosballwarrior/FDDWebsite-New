@@ -10,6 +10,7 @@ const {
   CompleteMultipartUploadCommand,
   AbortMultipartUploadCommand,
   ListObjectsV2Command,
+  GetObjectCommand,
   DeleteObjectCommand,
   CopyObjectCommand,
 } = require('@aws-sdk/client-s3');
@@ -173,6 +174,34 @@ async function saveManifest(body) {
   return ok({ key });
 }
 
+async function listSubmissions(body) {
+  const authErr = checkAdmin(body);
+  if (authErr) return authErr;
+
+  const listCmd = new ListObjectsV2Command({
+    Bucket: BUCKET,
+    Prefix: 'submissions/',
+  });
+
+  const listResult = await s3.send(listCmd);
+  const keys = (listResult.Contents || [])
+    .map(obj => obj.Key)
+    .filter(k => k.endsWith('.json'));
+
+  const submissions = await Promise.all(keys.map(async (key) => {
+    try {
+      const getCmd = new GetObjectCommand({ Bucket: BUCKET, Key: key });
+      const res = await s3.send(getCmd);
+      const text = await res.Body.transformToString();
+      return JSON.parse(text);
+    } catch {
+      return null;
+    }
+  }));
+
+  return ok({ submissions: submissions.filter(Boolean) });
+}
+
 async function listObjects(body) {
   const authErr = checkAdmin(body);
   if (authErr) return authErr;
@@ -270,6 +299,7 @@ exports.handler = async (event) => {
       case 'abort-multipart':      return await abortMultipart(body);
       case 'save-manifest':        return await saveManifest(body);
       // Admin
+      case 'list-submissions':     return await listSubmissions(body);
       case 'list-objects':         return await listObjects(body);
       case 'get-presigned-url':    return await getPresignedUrl(body);
       case 'delete-object':        return await deleteObject(body);
