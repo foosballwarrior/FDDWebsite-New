@@ -54,7 +54,11 @@ const SHOWS = [
   { date: "2022-09-03", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
   { date: "2022-08-13", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
   { date: "2022-07-09", name: "Private Party",                    venue: "Private Venue",                city: "Kemptville, ON",  tickets: "" },
-  { date: "2026-04-03", name: "The Prescott",  venue: "The Prescott", city: "Ottawa, ON", tickets: "https://www.facebook.com/share/1CFbKiHgFr/" },
+  { date: "2026-04-03", name: "The Prescott",                     venue: "The Prescott",                      city: "Ottawa, ON",       tickets: "https://www.facebook.com/share/1CFbKiHgFr/" },
+  { date: "2026-05-09", name: "Joe's Spencercity Bar & Grill",    venue: "Joe's Spencercity Bar & Grill",     city: "Spencerville, ON", tickets: "" },
+  { date: "2026-06-05", name: "Boston Pizza",                     venue: "Boston Pizza",                      city: "Renfrew, ON",      tickets: "" },
+  { date: "2026-07-01", name: "Boston Pizza",                     venue: "Boston Pizza",                      city: "Renfrew, ON",      tickets: "" },
+  { date: "2026-09-05", name: "Cameron's Point Family Campground",venue: "Cameron's Point Family Campground", city: "Summerstown, ON",  tickets: "" },
   // Add upcoming shows above this line
 ];
 
