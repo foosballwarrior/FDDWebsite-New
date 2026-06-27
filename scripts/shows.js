@@ -57,7 +57,7 @@ const SHOWS = [
   { date: "2026-05-09", name: "Joe's Spencercity Bar & Grill",    venue: "Joe's Spencercity Bar & Grill",     city: "Spencerville, ON", tickets: "" },
   { date: "2026-06-05", name: "Boston Pizza",                     venue: "Boston Pizza",                      city: "Renfrew, ON",      tickets: "" },
   { date: "2026-06-13", name: "Private Event",                    venue: "Private Venue",                     city: "",                 tickets: "" },
-  { date: "2026-07-01", name: "Boston Pizza",                     venue: "Boston Pizza",                      city: "Renfrew, ON",      tickets: "" },
+  { date: "2026-07-01", name: "Boston Pizza",                     venue: "Boston Pizza",                      city: "Renfrew, ON",      tickets: "https://www.facebook.com/events/3188717728003385" },
   { date: "2026-09-05", name: "Cameron's Point Family Campground",venue: "Cameron's Point Family Campground", city: "Summerstown, ON",  tickets: "" },
   { date: "2026-09-11", name: "The Prescott",                     venue: "The Prescott",                      city: "Ottawa, ON",       tickets: "" },
   { date: "2026-09-19", name: "Mom Prom III ~ The Fairytale Edition", venue: "Private Venue",               city: "Kemptville, ON",   tickets: "https://www.facebook.com/events/26633061349678614" },
