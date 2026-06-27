@@ -61,6 +61,8 @@ const SHOWS = [
   { date: "2026-09-05", name: "Cameron's Point Family Campground",venue: "Cameron's Point Family Campground", city: "Summerstown, ON",  tickets: "" },
   { date: "2026-09-11", name: "The Prescott",                     venue: "The Prescott",                      city: "Ottawa, ON",       tickets: "" },
   { date: "2026-09-19", name: "Mom Prom III ~ The Fairytale Edition", venue: "Private Venue",               city: "Kemptville, ON",   tickets: "https://www.facebook.com/events/26633061349678614" },
+  { date: "2026-09-25", name: "Private Event",                    venue: "Private Venue",                     city: "Kemptville, ON",   tickets: "" },
+  { date: "2026-09-26", name: "Private Event",                    venue: "Private Venue",                     city: "Beckwith, ON",     tickets: "" },
   // Add upcoming shows above this line
 ];
 
