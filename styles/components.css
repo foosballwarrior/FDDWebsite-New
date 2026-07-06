@@ -262,8 +262,24 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(2,6,8,0.50) 0%, rgba(7,18,24,0.50) 100%);
+  background: linear-gradient(
+    165deg,
+    rgba(2, 6, 8, 0.72) 0%,
+    rgba(10, 27, 41, 0.35) 45%,
+    rgba(255, 45, 155, 0.16) 100%
+  );
   z-index: 1;
+}
+
+/* Fade the hero bottom into the page background */
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--c-black));
 }
 
 .hero-content {
@@ -274,6 +290,9 @@
 
 .hero-content h1 {
   color: var(--c-white);
+  font-size: clamp(3.5rem, 13vw, 8.5rem);
+  line-height: 1;
+  text-shadow: var(--glow-cyan);
   margin-bottom: var(--space-xs);
 }
 

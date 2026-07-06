@@ -1,7 +1,71 @@
 // scripts/main.js
 // Five Dollar Down — Nav, smooth scroll, show renderer, form logic
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ─── Reveal on scroll ─────────────────────────────────
+// Marks <html> so motion.css only hides [data-reveal] elements JS will reveal.
+// Other scripts (gallery.js) call window.fddReveal(root) after rendering.
+let revealObserver = null;
+
+window.fddReveal = (root = document) => {
+  const els = root.querySelectorAll('[data-reveal]:not(.is-revealed)');
+  if (!els.length) return;
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('is-revealed'));
+    return;
+  }
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }
+
+  // Stagger siblings within the same parent
+  const groups = new Map();
+  els.forEach(el => {
+    const idx = groups.get(el.parentElement) || 0;
+    el.style.setProperty('--reveal-delay', `${Math.min(idx, 8) * 70}ms`);
+    groups.set(el.parentElement, idx + 1);
+    revealObserver.observe(el);
+  });
+};
+
+document.documentElement.classList.add('js-reveal');
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ─── Nav scroll state (glass past the hero) ───────────
+  const nav = document.querySelector('.site-nav');
+  const hasHero = !!document.querySelector('.hero');
+
+  if (nav) {
+    let ticking = false;
+    const updateNav = () => {
+      const scrolled = window.scrollY > 8;
+      nav.classList.toggle('is-scrolled', scrolled);
+      nav.classList.toggle('is-top', hasHero && !scrolled);
+      ticking = false;
+    };
+    updateNav();
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(updateNav); }
+    }, { passive: true });
+  }
+
+  // ─── Hero video: respect reduced motion ───────────────
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo && prefersReducedMotion) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
 
   // ─── Navigation: hamburger / overlay ──────────────────
   const hamburger = document.querySelector('.nav-hamburger');
@@ -78,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const card = document.createElement('div');
         card.className = 'show-card';
+        card.setAttribute('data-reveal', '');
         card.innerHTML = `
           <div class="show-card-name">${show.name}</div>
           <div class="show-card-city">${show.city}</div>
@@ -98,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     getDisplaySongs().forEach(song => {
       const item = document.createElement('div');
       item.className = 'song-item';
+      item.setAttribute('data-reveal', '');
       item.innerHTML = `
         <span class="song-artist">${song.artist}</span>
         <span class="song-title">${song.title}</span>
@@ -175,5 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (label)   label.textContent = 'Sending…';
     });
   }
+
+  // ─── Reveal everything rendered so far ─────────────────
+  window.fddReveal();
 
 });

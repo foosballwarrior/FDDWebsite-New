@@ -80,6 +80,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/gallery.css">
+  <link rel="stylesheet" href="styles/motion.css">
 </head>
 <body>
 
@@ -144,6 +145,11 @@
         <p class="hero-subheading">Rock &bull; Pop &bull; Country &bull; Everything in Between</p>
         <a href="#book-us" class="btn-primary">Book Us</a>
       </div>
+      <a href="#about" class="hero-scroll-cue" aria-label="Scroll to About section">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </a>
     </section>
 
     <!-- ─── Section 2: About ────────────────────────── -->
@@ -151,14 +157,14 @@
       <div class="container">
         <div class="two-col">
 
-          <div class="about-text">
+          <div class="about-text" data-reveal>
             <h2>About the Band</h2>
             <p>Ready to dance all night? We're the high-energy party band that turns every event into an unforgettable celebration. With 8+ years of experience crafting perfect setlists, we deliver the hits you know and love—guaranteed to pack the dance floor at your wedding, corporate event, restaurant or backyard party.</p>
             <p>Born in 2017 as two folks with acoustic guitars jamming around Ottawa, we've since cranked up the volume into a full-band, dance-floor-packing machine. From rock anthems to country boot-stompers, we bring the tunes — and the party — to every stage.</p>
             <a href="about.html" class="btn-ghost mt-sm">Meet the Band &rarr;</a>
           </div>
 
-          <div class="about-photo-single">
+          <div class="about-photo-single" data-reveal>
             <figure>
               <img
                 src="assets/images/band-1.webp"
@@ -177,7 +183,7 @@
     <!-- ─── Section 3: Shows ────────────────────────── -->
     <section id="shows" class="bg-ink section-pad">
       <div class="container">
-        <h2 class="section-heading section-heading--accent">Upcoming Shows</h2>
+        <h2 class="section-heading section-heading--accent" data-reveal>Upcoming Shows</h2>
         <!-- JS renders show cards here -->
         <div id="shows-container"></div>
         <div class="shows-footer">
@@ -192,7 +198,7 @@
       <!-- Videos -->
       <div class="bg-surface pad-block-lg">
         <div class="container">
-          <h2 class="section-heading">Watch Us Play</h2>
+          <h2 class="section-heading" data-reveal>Watch Us Play</h2>
           <!-- Vertical videos — multi-col row -->
           <div class="videos-grid-vertical">
             <div class="yt-embed" data-id="KcOcnyOr_eE" data-orientation="vertical"></div>
@@ -211,7 +217,7 @@
       <!-- Option B: Upload CTA banner -->
       <div class="upload-cta-banner">
         <div class="container">
-          <div class="upload-cta-inner">
+          <div class="upload-cta-inner" data-reveal>
             <div class="upload-cta-text">
               <p class="upload-cta-eyebrow">Fan submissions</p>
               <p class="upload-cta-headline">Were you there?</p>
@@ -225,7 +231,7 @@
       <!-- Photos -->
       <div class="bg-ink pad-block-lg">
         <div class="container">
-          <h2 class="section-heading section-heading--accent">Photos</h2>
+          <h2 class="section-heading section-heading--accent" data-reveal>Photos</h2>
           <!-- JS renders preview of 6 photos -->
           <div id="gallery-container" class="gallery-grid" data-preview="6" data-preview-desktop="8"></div>
           <div class="shows-footer">
@@ -246,7 +252,7 @@
     <!-- ─── Section 5: Songs ────────────────────────── -->
     <section id="songs" class="bg-surface section-pad">
       <div class="container">
-        <h2 class="section-heading">Songs We Play</h2>
+        <h2 class="section-heading" data-reveal>Songs We Play</h2>
         <p class="section-subtext">A sample from our setlist — refreshes every visit</p>
         <!-- JS renders songs here from scripts/songs.js -->
         <div id="songs-container" class="songs-grid"></div>
@@ -258,7 +264,7 @@
       <div class="container">
         <div class="two-col">
 
-          <div class="book-copy">
+          <div class="book-copy" data-reveal>
             <h2>Let's Make Your Event Unforgettable</h2>
             <ul>
               <li>
@@ -282,7 +288,7 @@
             </ul>
           </div>
 
-          <div>
+          <div data-reveal>
             <form
               name="book-us"
               method="POST"

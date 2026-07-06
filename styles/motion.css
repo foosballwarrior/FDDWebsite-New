@@ -1,0 +1,96 @@
+/* styles/motion.css */
+/* Five Dollar Down — Scroll reveals, nav scroll state, hero motion */
+/* All animation is gated behind prefers-reduced-motion: no-preference. */
+
+/* ─── Reduced-motion kill switch ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Reveal on scroll ───────────────────────────────── */
+/* Elements only start hidden once JS confirms it will reveal them
+   (html.js-reveal) — no-JS users always see full content. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--reveal-dist));
+    transition:
+      opacity   var(--reveal-dur) var(--ease-out),
+      transform var(--reveal-dur) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js-reveal [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ─── Nav scroll state ───────────────────────────────── */
+/* Default .site-nav stays solid black (no-JS fallback).
+   JS adds .is-top over the hero and .is-scrolled past it. */
+.site-nav {
+  transition:
+    background    var(--t-base),
+    border-color  var(--t-base);
+}
+
+.site-nav.is-top {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.site-nav.is-scrolled {
+  background: var(--nav-glass);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(0, 212, 255, 0.35);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .site-nav.is-scrolled {
+    background: var(--c-black);
+  }
+}
+
+/* ─── Hero scroll cue ────────────────────────────────── */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 0;
+  transition: color var(--t-fast);
+}
+
+.hero-scroll-cue:hover {
+  color: var(--c-accent);
+}
+
+.hero-scroll-cue:focus-visible {
+  outline: 2px solid var(--c-accent-lt);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.hero-scroll-cue svg {
+  width: 30px;
+  height: 30px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scroll-cue {
+    animation: cue-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes cue-bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 8px); }
+  }
+}

@@ -71,6 +71,7 @@ function renderGallery(container, allPhotos) {
   photosToRender.forEach((photo, index) => {
     const fig = document.createElement('figure');
     fig.className = 'gallery-item';
+    fig.setAttribute('data-reveal', '');
     fig.setAttribute('tabindex', '0');
     fig.setAttribute('role', 'button');
     fig.setAttribute('aria-label', `View photo: ${photo.alt}`);
@@ -99,6 +100,8 @@ function renderGallery(container, allPhotos) {
 
     container.appendChild(fig);
   });
+
+  if (window.fddReveal) window.fddReveal(container.parentElement || container);
 
   // ─── Lightbox ─────────────────────────────────────────
   let currentIndex = 0;
