@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(manifest => {
       const photos = manifest.map(entry => ({
         src: entry.src,
+        thumb: entry.thumb || entry.src,
+        thumb2x: entry.thumb2x || entry.src,
         alt: PHOTO_ALTS[entry.num] || `Five Dollar Down live`,
         pinned: entry.pinned || false,
       }));
@@ -76,7 +78,9 @@ function renderGallery(container, allPhotos) {
 
     fig.innerHTML = `
       <img
-        src="${photo.src}"
+        src="${photo.thumb}"
+        srcset="${photo.thumb} 400w, ${photo.thumb2x} 800w"
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
         alt="${photo.alt}"
         loading="lazy"
         width="400"
