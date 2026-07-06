@@ -20,7 +20,7 @@
   --texture-lines: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='30' x2='30' y2='0' stroke='rgba(255%2C255%2C255%2C0.05)' stroke-width='1'/%3E%3C/svg%3E");
   --c-white:      #FFFFFF;
   --c-border:     #005F6E;
-  --c-muted:      #4A9AAA;
+  --c-muted:      #6FB5C4;
 
   /* Spacing scale */
   --space-xs: 0.5rem;
