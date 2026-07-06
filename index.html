@@ -128,16 +128,15 @@
         muted
         loop
         playsinline
+        preload="metadata"
         poster="assets/video/hero-poster.jpg"
         aria-hidden="true"
         id="hero-video"
       >
-        <!--
-          Desktop source (1920×1080, landscape) — uncomment when ready:
-          <source src="assets/video/hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
-        -->
-        <!-- Mobile source (vertical) — used for all sizes until desktop is ready -->
-        <source src="assets/video/hero-mobile.webm" type="video/webm">
+        <!-- Desktop source (1280×720, landscape) -->
+        <source src="assets/video/hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
+        <!-- Mobile source (540×960, vertical) -->
+        <source src="assets/video/hero-mobile-v2.webm" type="video/webm">
       </video>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
