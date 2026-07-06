@@ -8,8 +8,10 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -106,7 +108,7 @@ section {
   margin-bottom: var(--space-md);
 }
 
-.section-heading--gold {
+.section-heading--accent {
   color: var(--c-white);
 }
 
@@ -144,11 +146,36 @@ section {
 }
 
 /* ─── Text colors ────────────────────────────────────── */
-.text-gold   { color: var(--c-accent); }
+.text-accent { color: var(--c-accent); }
 .text-muted  { color: var(--c-muted); }
 .text-white  { color: var(--c-white); }
 
 /* ─── Utility ────────────────────────────────────────── */
+.text-center  { text-align: center; }
+.mt-sm        { margin-top: var(--space-sm); }
+.mb-sm        { margin-bottom: var(--space-sm); }
+.mb-md        { margin-bottom: var(--space-md); }
+.pad-block-lg { padding-block: var(--space-lg); }
+.copy-narrow  { max-width: 480px; margin-inline: auto; }
+
+/* Sub-pages: clear the fixed 60px nav */
+.page-main {
+  padding-top: 60px;
+}
+
+/* Full-height centered page (thank-you) */
+.page-centered {
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-centered > .section-pad {
+  width: 100%;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

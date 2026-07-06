@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(manifest => {
       const photos = manifest.map(entry => ({
         src: entry.src,
+        thumb: entry.thumb || entry.src,
+        thumb2x: entry.thumb2x || entry.src,
         alt: PHOTO_ALTS[entry.num] || `Five Dollar Down live`,
         pinned: entry.pinned || false,
       }));
@@ -69,6 +71,7 @@ function renderGallery(container, allPhotos) {
   photosToRender.forEach((photo, index) => {
     const fig = document.createElement('figure');
     fig.className = 'gallery-item';
+    fig.setAttribute('data-reveal', '');
     fig.setAttribute('tabindex', '0');
     fig.setAttribute('role', 'button');
     fig.setAttribute('aria-label', `View photo: ${photo.alt}`);
@@ -76,7 +79,9 @@ function renderGallery(container, allPhotos) {
 
     fig.innerHTML = `
       <img
-        src="${photo.src}"
+        src="${photo.thumb}"
+        srcset="${photo.thumb} 400w, ${photo.thumb2x} 800w"
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
         alt="${photo.alt}"
         loading="lazy"
         width="400"
@@ -95,6 +100,8 @@ function renderGallery(container, allPhotos) {
 
     container.appendChild(fig);
   });
+
+  if (window.fddReveal) window.fddReveal(container.parentElement || container);
 
   // ─── Lightbox ─────────────────────────────────────────
   let currentIndex = 0;
@@ -141,16 +148,16 @@ function renderGallery(container, allPhotos) {
     if (!photo) return;
     lbImg.src = photo.src;
     lbImg.alt = photo.alt;
-    lbPrev.style.visibility = index > 0 ? 'visible' : 'hidden';
-    lbNext.style.visibility = index < photosToRender.length - 1 ? 'visible' : 'hidden';
   }
 
   function prevPhoto() {
-    if (currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
+    currentIndex = (currentIndex - 1 + photosToRender.length) % photosToRender.length;
+    showPhoto(currentIndex);
   }
 
   function nextPhoto() {
-    if (currentIndex < photosToRender.length - 1) { currentIndex++; showPhoto(currentIndex); }
+    currentIndex = (currentIndex + 1) % photosToRender.length;
+    showPhoto(currentIndex);
   }
 
   lbClose.addEventListener('click', closeLightbox);

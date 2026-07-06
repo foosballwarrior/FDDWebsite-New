@@ -17,6 +17,8 @@
 
   <link rel="canonical" href="https://fivedollardown.com/gallery.html">
   <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fivedollardown.com/gallery.html">
@@ -25,14 +27,13 @@
   <meta property="og:image" content="https://fivedollardown.com/assets/images/band-1.webp">
   <meta property="og:site_name" content="Five Dollar Down">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link rel="preload" href="assets/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/fonts.css">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/gallery.css">
+  <link rel="stylesheet" href="styles/motion.css">
 </head>
 <body>
 
@@ -49,7 +50,7 @@
         <li><a href="index.html#media">Media</a></li>
         <li><a href="index.html#songs">Songs</a></li>
         <li><a href="upload.html">Were you there?</a></li>
-        <li><a href="#book-us" class="btn-primary">Book Us</a></li>
+        <li><a href="index.html#book-us" class="btn-primary">Book Us</a></li>
       </ul>
       <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
         <span></span><span></span><span></span>
@@ -68,12 +69,12 @@
     <a href="index.html#book-us">Book Us</a>
   </div>
 
-  <main style="padding-top: 60px;">
+  <main class="page-main">
     <section class="bg-ink section-pad">
       <div class="container">
-        <h2 class="section-heading section-heading--gold">Photos</h2>
+        <h2 class="section-heading section-heading--accent" data-reveal>Photos</h2>
         <div id="gallery-container" class="gallery-grid"></div>
-        <div class="shows-footer" style="margin-top: var(--space-md);">
+        <div class="shows-footer">
           <a href="index.html#media">&larr; Back to Media</a>
         </div>
       </div>
@@ -117,8 +118,8 @@
     </div>
   </footer>
 
-  <script src="scripts/gallery.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/gallery.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 
 </body>
 </html>

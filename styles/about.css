@@ -76,12 +76,13 @@
   border: 1px solid rgba(0, 212, 255, 0.12);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: border-color var(--t-base), transform var(--t-base);
+  transition: border-color var(--t-base), transform var(--t-base), box-shadow var(--t-base);
 }
 
 .member-card:hover {
   border-color: var(--c-accent);
   transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.14);
 }
 
 .member-photo-wrap {

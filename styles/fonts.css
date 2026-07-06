@@ -1,0 +1,19 @@
+/* styles/fonts.css */
+/* Five Dollar Down — Self-hosted fonts (latin subsets, OFL licensed) */
+/* Bebas Neue: display headings. DM Sans: body (variable, 400–500). */
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/bebas-neue-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('../assets/fonts/dm-sans-latin.woff2') format('woff2');
+}

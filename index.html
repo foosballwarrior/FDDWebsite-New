@@ -20,6 +20,8 @@
 
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -63,16 +65,22 @@
   }
   </script>
 
-  <!-- Preconnect for Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Hero poster is the LCP candidate — fetch it first -->
+  <link rel="preload" as="image" href="assets/video/hero-poster.jpg" fetchpriority="high">
+
+  <!-- YouTube thumbnails -->
+  <link rel="preconnect" href="https://i.ytimg.com">
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="preload" href="assets/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/fonts.css">
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/gallery.css">
+  <link rel="stylesheet" href="styles/motion.css">
 </head>
 <body>
 
@@ -120,16 +128,15 @@
         muted
         loop
         playsinline
+        preload="auto"
         poster="assets/video/hero-poster.jpg"
         aria-hidden="true"
         id="hero-video"
       >
-        <!--
-          Desktop source (1920×1080, landscape) — uncomment when ready:
-          <source src="assets/video/hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
-        -->
-        <!-- Mobile source (vertical) — used for all sizes until desktop is ready -->
-        <source src="assets/video/hero-mobile.webm" type="video/webm">
+        <!-- Desktop source (1280×720, landscape) -->
+        <source src="assets/video/hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
+        <!-- Mobile source (540×960, vertical) -->
+        <source src="assets/video/hero-mobile-v2.webm" type="video/webm">
       </video>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
@@ -137,6 +144,11 @@
         <p class="hero-subheading">Rock &bull; Pop &bull; Country &bull; Everything in Between</p>
         <a href="#book-us" class="btn-primary">Book Us</a>
       </div>
+      <a href="#about" class="hero-scroll-cue" aria-label="Scroll to About section">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </a>
     </section>
 
     <!-- ─── Section 2: About ────────────────────────── -->
@@ -144,14 +156,14 @@
       <div class="container">
         <div class="two-col">
 
-          <div class="about-text">
+          <div class="about-text" data-reveal>
             <h2>About the Band</h2>
             <p>Ready to dance all night? We're the high-energy party band that turns every event into an unforgettable celebration. With 8+ years of experience crafting perfect setlists, we deliver the hits you know and love—guaranteed to pack the dance floor at your wedding, corporate event, restaurant or backyard party.</p>
-            <p><!-- TODO: add band history paragraph (e.g. how the band formed, notable venues, what makes FDD unique) --></p>
-            <a href="about.html" class="btn-ghost" style="margin-top: var(--space-sm);">Meet the Band &rarr;</a>
+            <p>Born in 2017 as two folks with acoustic guitars jamming around Ottawa, we've since cranked up the volume into a full-band, dance-floor-packing machine. From rock anthems to country boot-stompers, we bring the tunes — and the party — to every stage.</p>
+            <a href="about.html" class="btn-ghost mt-sm">Meet the Band &rarr;</a>
           </div>
 
-          <div class="about-photo-single">
+          <div class="about-photo-single" data-reveal>
             <figure>
               <img
                 src="assets/images/band-1.webp"
@@ -170,7 +182,7 @@
     <!-- ─── Section 3: Shows ────────────────────────── -->
     <section id="shows" class="bg-ink section-pad">
       <div class="container">
-        <h2 class="section-heading section-heading--gold">Upcoming Shows</h2>
+        <h2 class="section-heading section-heading--accent" data-reveal>Upcoming Shows</h2>
         <!-- JS renders show cards here -->
         <div id="shows-container"></div>
         <div class="shows-footer">
@@ -183,9 +195,9 @@
     <section id="media" class="section-pad">
 
       <!-- Videos -->
-      <div class="bg-surface" style="padding-block: var(--space-lg);">
+      <div class="bg-surface pad-block-lg">
         <div class="container">
-          <h2 class="section-heading">Watch Us Play</h2>
+          <h2 class="section-heading" data-reveal>Watch Us Play</h2>
           <!-- Vertical videos — multi-col row -->
           <div class="videos-grid-vertical">
             <div class="yt-embed" data-id="KcOcnyOr_eE" data-orientation="vertical"></div>
@@ -204,7 +216,7 @@
       <!-- Option B: Upload CTA banner -->
       <div class="upload-cta-banner">
         <div class="container">
-          <div class="upload-cta-inner">
+          <div class="upload-cta-inner" data-reveal>
             <div class="upload-cta-text">
               <p class="upload-cta-eyebrow">Fan submissions</p>
               <p class="upload-cta-headline">Were you there?</p>
@@ -216,9 +228,9 @@
       </div>
 
       <!-- Photos -->
-      <div class="bg-ink" style="padding-block: var(--space-lg);">
+      <div class="bg-ink pad-block-lg">
         <div class="container">
-          <h2 class="section-heading section-heading--gold">Photos</h2>
+          <h2 class="section-heading section-heading--accent" data-reveal>Photos</h2>
           <!-- JS renders preview of 6 photos -->
           <div id="gallery-container" class="gallery-grid" data-preview="6" data-preview-desktop="8"></div>
           <div class="shows-footer">
@@ -239,7 +251,7 @@
     <!-- ─── Section 5: Songs ────────────────────────── -->
     <section id="songs" class="bg-surface section-pad">
       <div class="container">
-        <h2 class="section-heading">Songs We Play</h2>
+        <h2 class="section-heading" data-reveal>Songs We Play</h2>
         <p class="section-subtext">A sample from our setlist — refreshes every visit</p>
         <!-- JS renders songs here from scripts/songs.js -->
         <div id="songs-container" class="songs-grid"></div>
@@ -251,7 +263,7 @@
       <div class="container">
         <div class="two-col">
 
-          <div class="book-copy">
+          <div class="book-copy" data-reveal>
             <h2>Let's Make Your Event Unforgettable</h2>
             <ul>
               <li>
@@ -275,7 +287,7 @@
             </ul>
           </div>
 
-          <div>
+          <div data-reveal>
             <form
               name="book-us"
               method="POST"
@@ -369,30 +381,52 @@
   <footer class="site-footer">
     <div class="container">
 
-      <div class="footer-social" aria-label="Contact and social links">
+      <div class="footer-grid">
 
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/FiveDollarDown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-          </svg>
-        </a>
+        <div class="footer-brand">
+          <p class="footer-brand-name">Five Dollar Down</p>
+          <p class="footer-tagline">Ottawa's premier party band</p>
+        </div>
 
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/fivedollardown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#shows">Shows</a>
+          <a href="#media">Media</a>
+          <a href="#songs">Songs</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="#book-us">Book Us</a>
+        </nav>
 
-        <!-- Email -->
-        <a href="mailto:booking@fivedollardown.com" aria-label="Email booking@fivedollardown.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-        </a>
+        <div class="footer-contact">
+          <a class="footer-email" href="mailto:booking@fivedollardown.com">booking@fivedollardown.com</a>
+
+          <div class="footer-social" aria-label="Social links">
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/FiveDollarDown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/fivedollardown" target="_blank" rel="noopener noreferrer" aria-label="Five Dollar Down on Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:booking@fivedollardown.com" aria-label="Email booking@fivedollardown.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </a>
+
+          </div>
+        </div>
 
       </div>
 
@@ -403,11 +437,11 @@
   </footer>
 
   <!-- ─── Scripts (end of body) ───────────────────────── -->
-  <script src="scripts/shows.js"></script>
-  <script src="scripts/songs.js"></script>
-  <script src="scripts/gallery.js"></script>
-  <script src="scripts/youtube.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/shows.js" defer></script>
+  <script src="scripts/songs.js" defer></script>
+  <script src="scripts/gallery.js" defer></script>
+  <script src="scripts/youtube.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 
 </body>
 </html>
