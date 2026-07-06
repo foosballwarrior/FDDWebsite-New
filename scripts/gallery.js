@@ -148,16 +148,16 @@ function renderGallery(container, allPhotos) {
     if (!photo) return;
     lbImg.src = photo.src;
     lbImg.alt = photo.alt;
-    lbPrev.style.visibility = index > 0 ? 'visible' : 'hidden';
-    lbNext.style.visibility = index < photosToRender.length - 1 ? 'visible' : 'hidden';
   }
 
   function prevPhoto() {
-    if (currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
+    currentIndex = (currentIndex - 1 + photosToRender.length) % photosToRender.length;
+    showPhoto(currentIndex);
   }
 
   function nextPhoto() {
-    if (currentIndex < photosToRender.length - 1) { currentIndex++; showPhoto(currentIndex); }
+    currentIndex = (currentIndex + 1) % photosToRender.length;
+    showPhoto(currentIndex);
   }
 
   lbClose.addEventListener('click', closeLightbox);
