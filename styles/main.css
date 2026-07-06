@@ -119,18 +119,8 @@ section {
   border-radius: 2px;
 }
 
-/* Cyan→magenta gradient text, solid accent fallback */
 .section-heading--accent {
-  color: var(--c-accent);
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .section-heading--accent {
-    background: var(--grad-brand);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  color: var(--c-white);
 }
 
 .section-subtext {
