@@ -20,6 +20,8 @@
 
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -62,6 +64,12 @@
     ]
   }
   </script>
+
+  <!-- Hero poster is the LCP candidate — fetch it first -->
+  <link rel="preload" as="image" href="assets/video/hero-poster.jpg" fetchpriority="high">
+
+  <!-- YouTube thumbnails -->
+  <link rel="preconnect" href="https://i.ytimg.com">
 
   <!-- Preconnect for Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,11 +433,11 @@
   </footer>
 
   <!-- ─── Scripts (end of body) ───────────────────────── -->
-  <script src="scripts/shows.js"></script>
-  <script src="scripts/songs.js"></script>
-  <script src="scripts/gallery.js"></script>
-  <script src="scripts/youtube.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/shows.js" defer></script>
+  <script src="scripts/songs.js" defer></script>
+  <script src="scripts/gallery.js" defer></script>
+  <script src="scripts/youtube.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 
 </body>
 </html>

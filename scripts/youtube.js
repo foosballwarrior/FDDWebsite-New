@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isVertical = embed.dataset.orientation === 'vertical';
     // maxresdefault gives best quality; fall back to hqdefault if not available
     const thumbUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    const fallbackUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
     const thumbW = isVertical ? 270 : 480;
     const thumbH = isVertical ? 480 : 270;
 
@@ -31,6 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `;
+
+    const thumbImg = embed.querySelector('.yt-thumb img');
+    thumbImg.addEventListener('error', () => { thumbImg.src = fallbackUrl; }, { once: true });
+    thumbImg.addEventListener('load', () => {
+      // Videos without a maxres thumbnail return a 120x90 placeholder with HTTP 200
+      if (thumbImg.naturalWidth <= 120) thumbImg.src = fallbackUrl;
+    }, { once: true });
 
     function loadIframe() {
       embed.innerHTML = `
