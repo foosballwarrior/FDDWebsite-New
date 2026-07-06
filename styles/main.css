@@ -108,8 +108,29 @@ section {
   margin-bottom: var(--space-md);
 }
 
+/* Gradient underline bar */
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: var(--space-xs) auto 0;
+  background: var(--grad-brand);
+  border-radius: 2px;
+}
+
+/* Cyan→magenta gradient text, solid accent fallback */
 .section-heading--accent {
-  color: var(--c-white);
+  color: var(--c-accent);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .section-heading--accent {
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .section-subtext {

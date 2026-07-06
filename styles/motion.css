@@ -94,3 +94,49 @@
     50%      { transform: translate(-50%, 8px); }
   }
 }
+
+/* ─── Genre marquee ──────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  background: var(--c-black);
+  border-block: 1px solid rgba(0, 212, 255, 0.2);
+  padding-block: 0.75rem;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/* Uniform spacing via margins (not gap) so the -50% loop is seamless */
+.marquee-track span {
+  color: var(--c-accent);
+  margin-right: 2.5rem;
+}
+
+/* Alternate words: magenta outline */
+.marquee-track span:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--c-accent-lt);
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .marquee-track span:nth-child(even) {
+    color: var(--c-accent-lt);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 28s linear infinite;
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+}
