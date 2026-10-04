@@ -62,6 +62,7 @@ const SHOWS = [
   { date: "2026-09-19", name: "Mom Prom III ~ The Fairytale Edition", venue: "Private Venue",               city: "Kemptville, ON",   tickets: "https://www.facebook.com/events/26633061349678614" },
   { date: "2026-09-25", name: "Private Event",                    venue: "Private Venue",                     city: "Kemptville, ON",   tickets: "" },
   { date: "2026-09-26", name: "Private Event",                    venue: "Private Venue",                     city: "Beckwith, ON",     tickets: "" },
+  { date: "2026-10-24", name: "Joe's Spencercity Bar & Grill",    venue: "Joe's Spencercity Bar & Grill",     city: "Spencerville, ON", tickets: "" },
   // Add upcoming shows above this line
 ];
 
