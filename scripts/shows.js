@@ -4,6 +4,7 @@
 
 const SHOWS = [
   { date: "2026-01-31", name: "Private Event",                    venue: "Private Venue",                city: "Fitzroy Harbour, ON", tickets: "" },
+  { date: "2026-12-31", name: "NYE Eve Bash",                       venue: "Boston Pizza",                 city: "Renfrew, ON",      tickets: "" },
   { date: "2025-12-31", name: "New Year's Eve",                   venue: "Private Venue",                city: "Arnprior, ON",     tickets: "" },
   { date: "2025-12-12", name: "The Prescott",                     venue: "The Prescott",                 city: "Ottawa, ON",       tickets: "" },
   { date: "2025-11-28", name: "Boston Pizza",                     venue: "Boston Pizza",                 city: "Renfrew, ON",      tickets: "" },
